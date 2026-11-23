@@ -1,15 +1,10 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
   plugins: [vue()],
-  build: {
-    rollupOptions: {
-      input: {
-        main: fileURLToPath(new URL('./index.html', import.meta.url)),
-        impressum: fileURLToPath(new URL('./impressum.html', import.meta.url)),
-      },
-    },
+  define: {
+    // Fixed at build time so prerendered HTML and hydration agree
+    __BUILD_YEAR__: new Date().getFullYear(),
   },
 })

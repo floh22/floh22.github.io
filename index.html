@@ -1,14 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="<!--lang-->">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lars Eble · Software Engineer</title>
-    <meta name="description" content="Software engineer and CTO building native, desktop and cloud software for live esports broadcasts." />
+    <title><!--title--></title>
+    <meta name="description" content="<!--description-->" />
+    <!--head-->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // Root only: send German browsers (or a stored DE choice) to /de/
+      ;(function () {
+        if (location.pathname !== '/') return
+        var stored = null
+        try {
+          stored = localStorage.getItem('lang')
+        } catch (e) {}
+        var de = stored ? stored === 'de' : /^de\b/i.test(navigator.language || '')
+        if (de) location.replace('/de/' + location.hash)
+      })()
+    </script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app"><!--app--></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

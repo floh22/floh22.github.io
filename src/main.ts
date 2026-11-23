@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
 import './style.css'
-import App from './App.vue'
+import { createApp } from './createApp'
+import { parsePath } from './routes'
 
-createApp(App).mount('#app')
+createApp(parsePath(location.pathname)).mount('#app')

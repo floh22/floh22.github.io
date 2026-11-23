@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { t } from './i18n'
+import { lang, t } from './i18n'
+import { pathFor } from './routes'
 import { ADDRESS, EMAIL } from './content/links'
 </script>
 
@@ -14,6 +15,6 @@ import { ADDRESS, EMAIL } from './content/links'
     <h3>{{ t.impressum.contactHeading }}</h3>
     <p>E-Mail: <a :href="`mailto:${EMAIL}`">{{ EMAIL }}</a></p>
 
-    <p><a href="/">{{ t.impressum.back }}</a></p>
+    <p><a :href="pathFor('home', lang)">{{ t.impressum.back }}</a></p>
   </section>
 </template>

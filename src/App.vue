@@ -2,10 +2,19 @@
 import { lang, t } from './i18n'
 import { EMAIL, GITHUB, LINKEDIN } from './content/links'
 import ImpressumPage from './ImpressumPage.vue'
+import { pathFor, type Page } from './routes'
 
-const props = withDefaults(defineProps<{ page?: 'home' | 'impressum' }>(), { page: 'home' })
+const props = withDefaults(defineProps<{ page?: Page }>(), { page: 'home' })
 // Section anchors point back to the homepage from subpages
-const home = props.page === 'home' ? '' : '/'
+const home = props.page === 'home' ? '' : pathFor('home', lang.value)
+const year = __BUILD_YEAR__
+
+// Remember explicit language choice for the root redirect in index.html
+function remember(l: 'en' | 'de') {
+  try {
+    localStorage.setItem('lang', l)
+  } catch {}
+}
 
 const sections = ['about', 'experience', 'projects', 'skills', 'education', 'contact'] as const
 </script>
@@ -20,8 +29,8 @@ const sections = ['about', 'experience', 'projects', 'skills', 'education', 'con
         </li>
       </ul>
       <div class="lang-switch" role="group" aria-label="Language">
-        <button :aria-pressed="lang === 'en'" @click="lang = 'en'">EN</button>
-        <button :aria-pressed="lang === 'de'" @click="lang = 'de'">DE</button>
+        <a :href="pathFor(page, 'en')" hreflang="en" :aria-current="lang === 'en' ? 'true' : undefined" @click="remember('en')">EN</a>
+        <a :href="pathFor(page, 'de')" hreflang="de" :aria-current="lang === 'de' ? 'true' : undefined" @click="remember('de')">DE</a>
       </div>
     </nav>
   </header>
@@ -121,6 +130,6 @@ const sections = ['about', 'experience', 'projects', 'skills', 'education', 'con
   </main>
 
   <footer class="container footer muted small">
-    © {{ new Date().getFullYear() }} Lars Eble · {{ t.footer }} · <a href="/impressum.html">{{ t.impressum.link }}</a>
+    © {{ year }} Lars Eble · {{ t.footer }} · <a :href="pathFor('impressum', lang)">{{ t.impressum.link }}</a>
   </footer>
 </template>

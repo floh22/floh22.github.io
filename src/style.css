@@ -108,16 +108,13 @@ h3 {
   border-radius: 6px;
   overflow: hidden;
 }
-.lang-switch button {
-  background: transparent;
+.lang-switch a {
   color: var(--muted);
-  border: 0;
   padding: 0.2rem 0.55rem;
-  font: inherit;
   font-size: 0.8rem;
-  cursor: pointer;
+  text-decoration: none;
 }
-.lang-switch button[aria-pressed='true'] {
+.lang-switch a[aria-current='true'] {
   background: var(--text);
   color: var(--bg);
 }
