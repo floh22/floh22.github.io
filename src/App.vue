@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { lang, t } from './i18n'
 import { EMAIL, GITHUB, LINKEDIN } from './content/links'
+import ImpressumPage from './ImpressumPage.vue'
+
+const props = withDefaults(defineProps<{ page?: 'home' | 'impressum' }>(), { page: 'home' })
+// Section anchors point back to the homepage from subpages
+const home = props.page === 'home' ? '' : '/'
 
 const sections = ['about', 'experience', 'projects', 'skills', 'education', 'contact'] as const
 </script>
@@ -8,10 +13,10 @@ const sections = ['about', 'experience', 'projects', 'skills', 'education', 'con
 <template>
   <header class="topbar">
     <nav class="container nav">
-      <a href="#top" class="brand">Lars Eble</a>
+      <a :href="`${home}#top`" class="brand">Lars Eble</a>
       <ul class="nav-links">
         <li v-for="id in sections" :key="id">
-          <a :href="`#${id}`">{{ t.nav[id] }}</a>
+          <a :href="`${home}#${id}`">{{ t.nav[id] }}</a>
         </li>
       </ul>
       <div class="lang-switch" role="group" aria-label="Language">
@@ -21,7 +26,11 @@ const sections = ['about', 'experience', 'projects', 'skills', 'education', 'con
     </nav>
   </header>
 
-  <main id="top" class="container">
+  <main v-if="page === 'impressum'" class="container">
+    <ImpressumPage />
+  </main>
+
+  <main v-else id="top" class="container">
     <section class="hero">
       <h1>Lars Eble</h1>
       <p class="headline">{{ t.hero.headline }}</p>
@@ -111,5 +120,7 @@ const sections = ['about', 'experience', 'projects', 'skills', 'education', 'con
     </section>
   </main>
 
-  <footer class="container footer muted small">© {{ new Date().getFullYear() }} Lars Eble · {{ t.footer }}</footer>
+  <footer class="container footer muted small">
+    © {{ new Date().getFullYear() }} Lars Eble · {{ t.footer }} · <a href="/impressum.html">{{ t.impressum.link }}</a>
+  </footer>
 </template>

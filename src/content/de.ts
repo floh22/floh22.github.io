@@ -130,6 +130,13 @@ const de: Content = {
     text: 'Am schnellsten erreichen Sie mich per E-Mail. Ich bin offen für neue Positionen und einen Umzug.',
   },
   footer: 'Erstellt mit Vue.',
+  impressum: {
+    link: 'Impressum',
+    title: 'Impressum',
+    legalBasis: 'Angaben gemäß § 5 DDG',
+    contactHeading: 'Kontakt',
+    back: '← Zurück zur Startseite',
+  },
 }
 
 export default de

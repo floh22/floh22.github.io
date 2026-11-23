@@ -33,4 +33,5 @@ export interface Content {
   education: { title: string; school: string; location: string; degrees: { name: string; date: string }[] }
   contact: { title: string; text: string }
   footer: string
+  impressum: { link: string; title: string; legalBasis: string; contactHeading: string; back: string }
 }

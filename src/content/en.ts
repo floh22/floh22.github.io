@@ -130,6 +130,13 @@ const en: Content = {
     text: 'The fastest way to reach me is by email. I’m open to new roles and to relocation.',
   },
   footer: 'Built with Vue.',
+  impressum: {
+    link: 'Legal notice (Impressum)',
+    title: 'Legal notice (Impressum)',
+    legalBasis: 'Information according to § 5 DDG (German Digital Services Act)',
+    contactHeading: 'Contact',
+    back: '← Back to homepage',
+  },
 }
 
 export default en
