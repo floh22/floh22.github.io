@@ -1,0 +1,8 @@
+services:
+  portfolio:
+    build: .
+    container_name: portfolio
+    restart: unless-stopped
+    # Change host port or replace with reverse-proxy labels as needed
+    ports:
+      - "8080:80"
